@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue"
 
-const showCreateEditModal = ref(false)
+const showForm = ref(false)
 const showPost = ref(false)
 const editMode = ref(false)
 const title = ref("")
@@ -20,7 +20,7 @@ const cleanForm = () => {
 
 const onCreateNewPost = () => {
   if (hasPosts.value) return
-  showCreateEditModal.value = !showCreateEditModal.value
+  showForm.value = !showForm.value
 }
 
 const onEditPost = () => {
@@ -32,7 +32,7 @@ const onEditPost = () => {
   content.value = post.content
   author.value = post.author
 
-  showCreateEditModal.value = true
+  showForm.value = true
 }
 
 const onSaveNewPost = () => {
@@ -45,9 +45,9 @@ const onSaveNewPost = () => {
     content: content.value,
     author: author.value
   }]
-  
+
   cleanForm()
-  showCreateEditModal.value = false
+  showForm.value = false
   showPost.value = true
   editMode.value = false
 }
@@ -73,7 +73,7 @@ const onDeletePost = () => {
     <!-- use this code template. -->
 
     <div 
-      v-if="showCreateEditModal" 
+      v-if="showForm" 
       class="card flex layout-column px-30"
     >
       <h2 class="text-center">{{ titleMessage }}</h2>
